@@ -18,7 +18,7 @@ public partial class MainViewViewModel : ObservableObject, IViewModel
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Title))]
-    public IPlugin selectedPluginItem;
+    public IPlugin? selectedPluginItem;
 
     public string Title => $"Now, [{SelectedPluginItem?.PluginName}] Selected.";
 
@@ -26,7 +26,10 @@ public partial class MainViewViewModel : ObservableObject, IViewModel
     private void Refresh()
     {
         PluginItems.Clear();
-        IEnumerable<IPlugin> pluginlist = pluginManager.BuildPluginServiceProvider();
+        IEnumerable<IPlugin>? pluginlist = pluginManager.BuildPluginServiceProvider();
+
+        if (pluginlist is null)
+            return;
 
         foreach (IPlugin item in pluginlist)
             PluginItems.Add(item);
