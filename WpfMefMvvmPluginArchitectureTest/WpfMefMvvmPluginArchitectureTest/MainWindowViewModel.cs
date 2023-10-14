@@ -3,5 +3,5 @@
 public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty]
-    public IViewModel? shellContent;
+    private IViewModel? _shellContent;
 }

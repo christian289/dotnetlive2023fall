@@ -6,19 +6,19 @@ public partial class MainViewViewModel : ObservableObject, IViewModel
 {
     public MainViewViewModel(PluginManager pluginManager)
     {
-        this.pluginManager = pluginManager;
+        this._pluginManager = pluginManager;
 
         PluginItems = new ObservableCollection<IPlugin>();
     }
 
-    private readonly PluginManager pluginManager;
+    private readonly PluginManager _pluginManager;
 
     [ObservableProperty]
-    public ObservableCollection<IPlugin> pluginItems;
+    private ObservableCollection<IPlugin> _pluginItems;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Title))]
-    public IPlugin? selectedPluginItem;
+    private IPlugin? _selectedPluginItem;
 
     public string Title => $"Now, [{SelectedPluginItem?.PluginName}] Selected.";
 
@@ -26,12 +26,12 @@ public partial class MainViewViewModel : ObservableObject, IViewModel
     private void Refresh()
     {
         PluginItems.Clear();
-        IEnumerable<IPlugin>? pluginlist = pluginManager.RefreshPlugin();
+        IEnumerable<IPlugin>? pluginList = _pluginManager.RefreshPlugin();
 
-        if (pluginlist is null)
+        if (pluginList is null)
             return;
 
-        foreach (IPlugin item in pluginlist)
+        foreach (IPlugin item in pluginList)
             PluginItems.Add(item);
     }
 }

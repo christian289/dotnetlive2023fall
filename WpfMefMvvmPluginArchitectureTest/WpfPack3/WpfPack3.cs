@@ -3,7 +3,7 @@ using WpfPackInterface;
 namespace WpfPack;
 
 [Export(typeof(IPlugin))]
-public class WpfPack3 : IPlugin
+public sealed class WpfPack3 : IPlugin
 {
     public WpfPack3()
     {
@@ -15,10 +15,4 @@ public class WpfPack3 : IPlugin
     public string PluginName { get; init; }
     public object PluginView { get; init; }
     public object PluginViewModel { get; init; }
-
-    public void RegisterServices(IServiceCollection services)
-    {
-        services.AddTransient<WpfPack3ViewModel>();
-        services.AddTransient<WpfPack3View>();
-    }
 }

@@ -11,13 +11,13 @@ public sealed class PluginManager
         if (!Directory.Exists(pluginPath))
             Directory.CreateDirectory(pluginPath);
 
-        catalog = new DirectoryCatalog("Plugins");
-        container = new CompositionContainer(catalog);
-        container.ComposeParts(this);
+        _catalog = new DirectoryCatalog("Plugins");
+        _container = new CompositionContainer(_catalog);
+        _container.ComposeParts(this);
     }
 
-    private readonly DirectoryCatalog catalog;
-    private readonly CompositionContainer container;
+    private readonly DirectoryCatalog _catalog;
+    private readonly CompositionContainer _container;
 
     [ImportMany(typeof(IPlugin), AllowRecomposition = true)]
     private IEnumerable<IPlugin>? Plugins { get; init; } // ImportMany를 통해 동적으로 생성되는 IEnumerable 이기 때문에 set이 필요없다. 또한 init이 없으면 read-only error가 발생한다.
@@ -27,7 +27,7 @@ public sealed class PluginManager
         if (Plugins is null)
             return default;
 
-        catalog.Refresh();
+        _catalog.Refresh();
 
         return Plugins;
     }

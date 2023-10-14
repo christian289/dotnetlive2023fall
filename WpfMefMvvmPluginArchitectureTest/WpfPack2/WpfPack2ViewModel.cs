@@ -8,5 +8,5 @@ public partial class WpfPack2ViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    public string? text;
+    private string? _text;
 }
