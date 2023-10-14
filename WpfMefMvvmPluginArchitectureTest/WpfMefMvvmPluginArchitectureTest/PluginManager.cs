@@ -29,7 +29,7 @@ public sealed class PluginManager
     private readonly CompositionContainer container;
 
     [ImportMany(typeof(IPlugin), AllowRecomposition = true)]
-    public IEnumerable<IPlugin> Plugins { get; private set; }
+    private IEnumerable<IPlugin> Plugins { get; } // ImportMany를 통해 동적으로 생성되는 IEnumerable 이기 때문에 set이 필요없다.
 
     public IEnumerable<IPlugin> BuildPluginServiceProvider()
     {
