@@ -26,7 +26,7 @@ public partial class MainViewViewModel : ObservableObject, IViewModel
     private void Refresh()
     {
         PluginItems.Clear();
-        IEnumerable<IPlugin>? pluginlist = pluginManager.BuildPluginServiceProvider();
+        IEnumerable<IPlugin>? pluginlist = pluginManager.RefreshPlugin();
 
         if (pluginlist is null)
             return;
