@@ -2,7 +2,7 @@
 
 namespace WpfMefMvvmPluginArchitectureTest;
 
-public partial class MainViewViewModel : ObservableObject
+public partial class MainViewViewModel : ObservableObject, IViewModel
 {
     public MainViewViewModel(PluginManager pluginManager)
     {
@@ -17,7 +17,10 @@ public partial class MainViewViewModel : ObservableObject
     public ObservableCollection<IPlugin> pluginItems;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Title))]
     public IPlugin selectedPluginItem;
+
+    public string Title => $"Now, [{SelectedPluginItem?.PluginName}] Selected.";
 
     [RelayCommand]
     private void Refresh()
