@@ -5,4 +5,6 @@
 
 Powerpoint: https://1drv.ms/p/s!Au3QF22QIfCXhrREzGrLonMHUnybXQ?e=DuxmDf
 
+YouTube: https://youtu.be/dxPBewOUNmo?si=5VBaHSFQh6Fpsg8i
+
 행사 링크: https://www.dotnetconf.kr/live/2023/fall
